@@ -1,10 +1,6 @@
 from flask import Flask, request, render_template_string
 import smtplib
 from email.mime.text import MIMEText
-from flask_frozen import Freezer
-
-app = Flask(__name__)
-freezer = Freezer(app)
 
 app = Flask(__name__)
 
