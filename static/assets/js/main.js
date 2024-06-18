@@ -249,6 +249,10 @@
   /**
    * Initiate Pure Counter 
    */
-  new PureCounter();
+  document.addEventListener('DOMContentLoaded', function() {
+    new PureCounter();
+  });
 
 })()
+
+

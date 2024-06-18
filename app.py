@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template_string,render_template,send_from_directory
 import smtplib
 from email.mime.text import MIMEText
 
@@ -14,6 +14,14 @@ SMTP_PASSWORD = 'valchleyikulpfhk'  # Replace with your email password
 def index():
     # Render your HTML form here
     return render_template_string(open('templates/index.html').read())
+
+@app.route('/download_pdf')
+def download_pdf():
+    return send_from_directory('static', 'jebin.pdf', as_attachment=True)
+
+@app.route('/portfolio-details')
+def portfolio_details():
+    return render_template('portfolio-details.html')
 
 @app.route('/send_email', methods=['POST'])
 def send_email():
