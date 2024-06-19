@@ -1,0 +1,12 @@
+{
+    "builds":[
+        {
+            "src":"Personal/app.py",
+            "use":"@vercel/python"
+        }
+
+    ],
+    "routes": [
+        {"src": "/Personal/*", "dest": "/Personal/app.py"}
+    ]
+}
