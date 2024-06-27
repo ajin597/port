@@ -1258,7 +1258,10 @@ body {
 }
 
 
-.download-btn {
+/* .download-btn {
+    position: relative;
+    right: 900px;
+    top: 200px;
     display: inline-block;
     color: #18d26e;
     text-decoration: none;
@@ -1274,8 +1277,11 @@ body {
 
 .download-btn:before {
     content: "";
+    position: absolute;
     width: 0;
     height: 2px;
+    bottom: -4px;
+    left: 0;
     background-color: #18d26e;
     visibility: hidden;
     transition: all 0.3s ease-in-out;
@@ -1289,5 +1295,5 @@ body {
 .download-btn:hover:before {
     visibility: visible;
     width: 100%;
-} 
+}  */
 
