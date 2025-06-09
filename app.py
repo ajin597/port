@@ -8,7 +8,7 @@ app = Flask(__name__)
 SMTP_SERVER = 'smtp.gmail.com'  # Replace with your SMTP server
 SMTP_PORT = 587  # Replace with your SMTP port (587 for TLS)
 SMTP_USERNAME = 'cjebin9@gmail.com'  # Replace with your email
-SMTP_PASSWORD = 'valchleyikulpfhk'  # Replace with your email password
+SMTP_PASSWORD = 'qefp fmiq klan hxap'  # Replace with your email password
 
 @app.route('/')
 def index():
@@ -27,7 +27,7 @@ def portfolio_details():
 def send_email():
     name = request.form['name']
     email = request.form['email']
-    subject = request.form['subject']
+    subject = request.form['subject']   
     message = request.form['message']
 
     # Prepare the email
