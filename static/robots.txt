@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://port-inky-seven.vercel.app/static/sitemap.xml
