@@ -86,7 +86,18 @@
         sections.forEach((item) => {
           item.classList.remove('section-show')
         })
+        if (history.pushState) {
+          history.pushState(null, null, window.location.pathname);
+        } else {
+          window.location.hash = '';
+        }
         return;
+      }
+
+      if (history.pushState) {
+        history.pushState(null, null, this.hash);
+      } else {
+        window.location.hash = this.hash;
       }
 
       if (!header.classList.contains('header-top')) {
@@ -140,21 +151,42 @@
   });
 
   /**
-   * Skills animation
+   * Skills animation — triggered when About section becomes visible
+   * (Waypoint doesn't work here since sections are shown via CSS class, not scroll)
    */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
+  function animateSkills() {
+    let progress = select('.progress .progress-bar', true);
+    progress.forEach((el) => {
+      el.style.width = el.getAttribute('aria-valuenow') + '%';
+    });
   }
+
+  // Observe the About section for section-show class being added
+  let aboutSection = select('#about');
+  if (aboutSection) {
+    let skillsObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          if (aboutSection.classList.contains('section-show')) {
+            setTimeout(animateSkills, 100);
+          }
+        }
+      });
+    });
+    skillsObserver.observe(aboutSection, { attributes: true });
+
+    // Also trigger immediately if About is already visible on page load
+    if (aboutSection.classList.contains('section-show')) {
+      setTimeout(animateSkills, 200);
+    }
+  }
+
+  // Also trigger on load via hash
+  window.addEventListener('load', () => {
+    if (window.location.hash === '#about') {
+      setTimeout(animateSkills, 500);
+    }
+  });
 
   /**
    * Testimonials slider
